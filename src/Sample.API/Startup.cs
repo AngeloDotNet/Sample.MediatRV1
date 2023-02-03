@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Sample.API.Infrastructure;
 using Sample.API.Infrastructure.Interfaces;
@@ -53,6 +54,8 @@ public class Startup
         services.AddScoped<ICommandRepository, CommandRepository<DbContext>>();
 
         services.AddTransient<IPeopleService, PeopleService>();
+
+        services.AddMediatR(typeof(Startup).Assembly);
     }
 
     public void Configure(WebApplication app)
