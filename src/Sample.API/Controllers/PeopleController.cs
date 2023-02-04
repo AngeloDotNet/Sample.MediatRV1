@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Sample.API.Entity;
+using Sample.API.MediatR;
 using Sample.API.Service;
 using System.Net.Mime;
 
@@ -12,24 +14,28 @@ public class PeopleController : ControllerBase
 {
     private readonly ILogger<PeopleController> logger;
     private readonly IPeopleService peopleService;
+    private readonly IMediator mediator;
 
-    public PeopleController(ILogger<PeopleController> logger, IPeopleService peopleService)
+    public PeopleController(ILogger<PeopleController> logger, IPeopleService peopleService, IMediator mediator)
     {
         this.logger = logger;
         this.peopleService = peopleService;
+        this.mediator = mediator;
     }
 
     [HttpGet("people")]
     public async Task<IActionResult> GetPeople()
     {
-        var people = await peopleService.GetPeopleAsync();
+        //var people = await peopleService.GetPeopleAsync();
+        var people = await mediator.Send(new GetPeopleListQuery());
         return Ok(people);
     }
 
     [HttpGet("person/{id}")]
     public async Task<IActionResult> GetPerson(Guid id)
     {
-        var person = await peopleService.GetPersonAsync(id);
+        //var person = await peopleService.GetPersonAsync(id);
+        var person = await mediator.Send(new GetPersonQuery(id));
         return Ok(person);
     }
 
