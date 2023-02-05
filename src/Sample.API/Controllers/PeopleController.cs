@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Sample.API.Entity;
 using Sample.API.MediatR;
 using Sample.API.Service;
 using System.Net.Mime;
@@ -26,7 +25,6 @@ public class PeopleController : ControllerBase
     [HttpGet("people")]
     public async Task<IActionResult> GetPeople()
     {
-        //var people = await peopleService.GetPeopleAsync();
         var people = await mediator.Send(new GetPeopleListQuery());
         return Ok(people);
     }
@@ -34,36 +32,35 @@ public class PeopleController : ControllerBase
     [HttpGet("person/{id}")]
     public async Task<IActionResult> GetPerson(Guid id)
     {
-        //var person = await peopleService.GetPersonAsync(id);
         var person = await mediator.Send(new GetPersonQuery(id));
         return Ok(person);
     }
 
-    [HttpPost("person")]
-    public async Task<IActionResult> CreatePerson([FromBody] PersonEntity person)
-    {
-        await peopleService.CreatePersonAsync(person);
-        return CreatedAtAction("GetPerson", new { id = person.Id }, person);
-    }
+    //[HttpPost("person")]
+    //public async Task<IActionResult> CreatePerson([FromBody] PersonEntity person)
+    //{
+    //    await peopleService.CreatePersonAsync(person);
+    //    return CreatedAtAction("GetPerson", new { id = person.Id }, person);
+    //}
 
-    [HttpPut("person")]
-    public async Task<IActionResult> UpdatePerson([FromBody] PersonEntity person)
-    {
-        await peopleService.UpdatePersonAsync(person);
-        return Ok();
-    }
+    //[HttpPut("person")]
+    //public async Task<IActionResult> UpdatePerson([FromBody] PersonEntity person)
+    //{
+    //    await peopleService.UpdatePersonAsync(person);
+    //    return Ok();
+    //}
 
-    [HttpDelete("person/{id}")]
-    public async Task<IActionResult> DeletePerson(Guid id)
-    {
-        var person = await peopleService.GetPersonAsync(id);
+    //[HttpDelete("person/{id}")]
+    //public async Task<IActionResult> DeletePerson(Guid id)
+    //{
+    //    var person = await peopleService.GetPersonAsync(id);
 
-        if (person == null)
-        {
-            return NotFound();
-        }
+    //    if (person == null)
+    //    {
+    //        return NotFound();
+    //    }
 
-        await peopleService.DeletePersonAsync(person);
-        return Ok();
-    }
+    //    await peopleService.DeletePersonAsync(person);
+    //    return Ok();
+    //}
 }
