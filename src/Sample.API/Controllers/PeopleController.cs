@@ -21,10 +21,10 @@ public class PeopleController : ControllerBase
         return Ok(people);
     }
 
-    [HttpGet("person/{id}")]
-    public async Task<IActionResult> GetPerson(Guid id)
+    [HttpGet("person/{id}/{userId}")]
+    public async Task<IActionResult> GetPerson(int id, Guid userId)
     {
-        var person = await mediator.Send(new GetPersonQuery(id));
+        var person = await mediator.Send(new GetPersonQuery(id, userId));
         return Ok(person);
     }
 
@@ -32,7 +32,7 @@ public class PeopleController : ControllerBase
     public async Task<IActionResult> CreatePerson([FromBody] PersonCreateInputModel person)
     {
         var result = await mediator.Send(new CreatePersonCommand(person));
-        return CreatedAtAction("GetPerson", new { id = result.Id }, person);
+        return Ok(result);
     }
 
     //[HttpPut("person")]

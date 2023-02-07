@@ -2,10 +2,12 @@
 
 public class GetPersonQuery : IRequest<PersonEntity>
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
+    public Guid UserId { get; set; }
 
-    public GetPersonQuery(Guid id)
+    public GetPersonQuery(int id, Guid userId)
     {
         Id = id;
+        UserId = userId;
     }
 }

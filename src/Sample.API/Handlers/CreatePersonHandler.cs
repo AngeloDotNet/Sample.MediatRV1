@@ -15,7 +15,7 @@ public class CreatePersonHandler : IRequestHandler<CreatePersonCommand, PersonEn
     {
         var input = new PersonEntity()
         {
-            Id = command.Id,
+            UserId = command.UserId,
             Cognome = command.Cognome,
             Nome = command.Nome,
             Email = command.Email
@@ -23,6 +23,15 @@ public class CreatePersonHandler : IRequestHandler<CreatePersonCommand, PersonEn
 
         await peopleService.CreatePersonAsync(input);
 
-        return input;
+        var response = new PersonEntity()
+        {
+            Id = input.Id,
+            UserId = input.UserId,
+            Cognome = input.Cognome,
+            Nome = input.Nome,
+            Email = input.Email
+        };
+
+        return response;
     }
 }

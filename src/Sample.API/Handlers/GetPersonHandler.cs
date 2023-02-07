@@ -15,6 +15,11 @@ public class GetPersonHandler : IRequestHandler<GetPersonQuery, PersonEntity>
     {
         var result = await peopleService.GetPersonAsync(request.Id);
 
-        return await Task.FromResult(result);
+        if (result.UserId == request.UserId)
+        {
+            return result;
+        }
+
+        return null;
     }
 }

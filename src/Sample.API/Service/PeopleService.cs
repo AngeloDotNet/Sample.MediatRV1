@@ -15,9 +15,9 @@ public class PeopleService : IPeopleService
         return people;
     }
 
-    public async Task<PersonEntity> GetPersonAsync(Guid id)
+    public async Task<PersonEntity> GetPersonAsync(int id)
     {
-        var person = await unitOfWork.DatabaseRepository.GetByIdGuidAsync(id);
+        var person = await unitOfWork.DatabaseRepository.GetByIdAsync(id);
         return person;
     }
 
