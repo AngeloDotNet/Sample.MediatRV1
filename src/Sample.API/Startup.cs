@@ -48,6 +48,7 @@ public class Startup
         services.AddTransient<IPeopleService, PeopleService>();
 
         services.AddMediatR(typeof(Startup).Assembly);
+        services.AddAutoMapper(typeof(PersonMapperProfile).Assembly);
     }
 
     public void Configure(WebApplication app)

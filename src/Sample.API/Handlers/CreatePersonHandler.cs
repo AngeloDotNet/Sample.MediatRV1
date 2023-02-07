@@ -4,22 +4,18 @@ public class CreatePersonHandler : IRequestHandler<CreatePersonCommand, PersonEn
 {
     private readonly ILogger<CreatePersonHandler> logger;
     private readonly IPeopleService peopleService;
+    private readonly IMapper mapper;
 
-    public CreatePersonHandler(ILogger<CreatePersonHandler> logger, IPeopleService peopleService)
+    public CreatePersonHandler(ILogger<CreatePersonHandler> logger, IPeopleService peopleService, IMapper mapper)
     {
         this.logger = logger;
         this.peopleService = peopleService;
+        this.mapper = mapper;
     }
 
     public async Task<PersonEntity> Handle(CreatePersonCommand command, CancellationToken cancellationToken)
     {
-        var input = new PersonEntity()
-        {
-            UserId = command.UserId,
-            Cognome = command.Cognome,
-            Nome = command.Nome,
-            Email = command.Email
-        };
+        var input = mapper.Map<PersonEntity>(command);
 
         await peopleService.CreatePersonAsync(input);
 
