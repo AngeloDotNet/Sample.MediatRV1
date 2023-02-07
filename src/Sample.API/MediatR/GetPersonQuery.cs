@@ -1,7 +1,4 @@
-﻿using MediatR;
-using Sample.API.Entity;
-
-namespace Sample.API.MediatR;
+﻿namespace Sample.API.MediatR;
 
 public class GetPersonQuery : IRequest<PersonEntity>
 {

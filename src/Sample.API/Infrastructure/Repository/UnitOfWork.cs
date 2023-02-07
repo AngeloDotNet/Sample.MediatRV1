@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Sample.API.Infrastructure.Interfaces;
-
-namespace Sample.API.Infrastructure.Repository;
+﻿namespace Sample.API.Infrastructure.Repository;
 
 public class UnitOfWork<TContext> : IUnitOfWork where TContext : DbContext
 {

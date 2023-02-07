@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Sample.API.Entity;
-
-namespace Sample.API.Infrastructure;
+﻿namespace Sample.API.Infrastructure;
 
 public partial class DataDbContext : DbContext
 {

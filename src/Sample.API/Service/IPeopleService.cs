@@ -1,6 +1,4 @@
-﻿using Sample.API.Entity;
-
-namespace Sample.API.Service;
+﻿namespace Sample.API.Service;
 
 public interface IPeopleService
 {

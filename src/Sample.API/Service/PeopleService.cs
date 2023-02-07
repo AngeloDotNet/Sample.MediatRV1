@@ -1,7 +1,4 @@
-﻿using Sample.API.Entity;
-using Sample.API.Infrastructure.Interfaces;
-
-namespace Sample.API.Service;
+﻿namespace Sample.API.Service;
 
 public class PeopleService : IPeopleService
 {

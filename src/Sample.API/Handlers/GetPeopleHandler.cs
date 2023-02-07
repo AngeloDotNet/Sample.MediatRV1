@@ -1,9 +1,4 @@
-﻿using MediatR;
-using Sample.API.Entity;
-using Sample.API.MediatR;
-using Sample.API.Service;
-
-namespace Sample.API.Handlers;
+﻿namespace Sample.API.Handlers;
 
 public class GetPeopleHandler : IRequestHandler<GetPeopleListQuery, List<PersonEntity>>
 {

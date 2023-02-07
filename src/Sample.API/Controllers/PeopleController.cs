@@ -1,10 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Sample.API.MediatR;
-using Sample.API.Service;
-using System.Net.Mime;
-
-namespace Sample.API.Controllers;
+﻿namespace Sample.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

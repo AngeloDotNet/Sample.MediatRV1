@@ -1,12 +1,4 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using Sample.API.Infrastructure;
-using Sample.API.Infrastructure.Interfaces;
-using Sample.API.Infrastructure.Repository;
-using Sample.API.Service;
-
-namespace Sample.API;
+﻿namespace Sample.API;
 
 public class Startup
 {
