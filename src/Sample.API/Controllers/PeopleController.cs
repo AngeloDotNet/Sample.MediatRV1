@@ -6,13 +6,11 @@
 public class PeopleController : ControllerBase
 {
     private readonly ILogger<PeopleController> logger;
-    private readonly IPeopleService peopleService;
     private readonly IMediator mediator;
 
-    public PeopleController(ILogger<PeopleController> logger, IPeopleService peopleService, IMediator mediator)
+    public PeopleController(ILogger<PeopleController> logger, IMediator mediator)
     {
         this.logger = logger;
-        this.peopleService = peopleService;
         this.mediator = mediator;
     }
 
@@ -30,12 +28,12 @@ public class PeopleController : ControllerBase
         return Ok(person);
     }
 
-    //[HttpPost("person")]
-    //public async Task<IActionResult> CreatePerson([FromBody] PersonEntity person)
-    //{
-    //    await peopleService.CreatePersonAsync(person);
-    //    return CreatedAtAction("GetPerson", new { id = person.Id }, person);
-    //}
+    [HttpPost("person")]
+    public async Task<IActionResult> CreatePerson([FromBody] PersonCreateInputModel person)
+    {
+        var result = await mediator.Send(new CreatePersonCommand(person));
+        return CreatedAtAction("GetPerson", new { id = result.Id }, person);
+    }
 
     //[HttpPut("person")]
     //public async Task<IActionResult> UpdatePerson([FromBody] PersonEntity person)
